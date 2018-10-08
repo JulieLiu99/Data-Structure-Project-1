@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#include "function.h"
+#include "search.h"
 
 using namespace std;
 
@@ -23,6 +23,9 @@ int main(int count, char * args[])
 		cout<<"Usage ./myspeller -d <dictionaryfilename> -l <numberOfWordsSearch>"<<endl;
 		return -1;
 	}
+
+    //Searching search;
+    //search.wordSearch();
 
 	cout<<"filename = "<<filename<<endl;
 	cout<<"WordCount = "<<wordcount<<endl;
