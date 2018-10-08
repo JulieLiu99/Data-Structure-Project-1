@@ -1,9 +1,9 @@
-output: myspeller.o function.o 
-	g++ myspeller.o function.o -o output
+myspeller: myspeller.o function.o 
+	g++ myspeller.o function.o -o myspeller
 speller.o: myspeller.cpp
 	g++ -c myspeller.cpp
-myqueue.o: function.cpp function.h
+function.o: function.cpp function.h
 	g++ -c function.cpp
 clean:
-	rm *.o output
+	rm *.o myspeller
 
