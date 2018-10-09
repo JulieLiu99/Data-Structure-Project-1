@@ -183,7 +183,7 @@ int main(int count, char * args[])
 	cout<<"WordCount = "<<wordcount<<endl;
 
     ifstream infile;
-    int dicSize = 141; //atoi(wordcount)
+    int dicSize = wordcount; //atoi(wordcount)
     string A[dicSize];
     string toSearch;
     int position;
