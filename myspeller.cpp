@@ -38,7 +38,7 @@ void dSearch::binaryWordSearch(string A[], int n, string value) {
     
     if(found == true){
         cout << "word found" << endl;
-        cout << comparison << " word comparison carried out" << endl;
+        cout << comparison << " word comparisons carried out" << endl;
         } else cout<< "word not found" << endl;
 
 }
@@ -66,18 +66,20 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
     int startIndex=position+1;
     while(A[startIndex-1].find(newValue) == 0) {
     	startIndex=startIndex-1;
+    	comparison += 1;
     }
     int endIndex=position;
         while(A[endIndex+1].find(newValue) == 0) {
     	endIndex=endIndex+1;
+    	comparison += 1;
     }
 
     if(!found) {
     	cout<< "word not found" << endl;
     } else {
     	cout << "word found" << endl;
-        cout << comparison << " word comparison carried out" << endl;
-        cout << "end: " << endIndex << "... start: " << startIndex << endl;
+        cout << comparison << " word comparisons carried out" << endl;
+        //cout << "end: " << endIndex << "... start: " << startIndex << endl;
         if((endIndex-startIndex)>0) {
         for(int j=0;j<(endIndex+1-startIndex);j++) {
         	cout << A[startIndex+j] << endl;
@@ -109,7 +111,7 @@ void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value) {
         else first = middle + 1;
         comparison += 1;
     }
-    cout << "found: " <<found << endl;
+    //cout << "found: " <<found << endl;
     int currentWord=position;
     int startIndex=position+1;
     while(A[startIndex-1].find(frontStringPart) == 0) {
@@ -126,22 +128,23 @@ void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value) {
  	int finalPosition;
  	string curBackStringPart;
  	for(int j=0;j<(last2+1-first2);j++) {
+ 		comparison+=1;
  		if(A[first2+j].size()==value.size()) {
- 		cout << "CURRENT WORD IN LOOP---> " << A[first2+j] << endl;
+ 		//cout << "CURRENT WORD IN LOOP---> " << A[first2+j] << endl;
  		curBackStringPart = A[first2+j].substr(qMarkPos+1,A[first2+j].size()-1);
- 		cout << "curBackStringPart: " << curBackStringPart << endl;
+ 		//cout << "curBackStringPart: " << curBackStringPart << endl;
  		if(curBackStringPart==backStringPart) {
  			foundFinal=true;
  			finalPosition=first2+j;
  		}
  	}
  }
- 	cout << "first2: " <<first2 << " last2: " << last2 << "backStringPart: " << backStringPart << "curBackStringPart: " << curBackStringPart << " Looking in: " << A[position] << endl;
+ 	//cout << "first2: " <<first2 << " last2: " << last2 << "backStringPart: " << backStringPart << "curBackStringPart: " << curBackStringPart << " Looking in: " << A[position] << endl;
     if(!foundFinal) {
     	cout<< "word not found" << endl;
     } else {
     	cout << "word found" << endl;
-        cout << comparison << " word comparison carried out" << endl;
+        cout << comparison << " word comparisons carried out" << endl;
         //cout << "end: " << endIndex << "... start: " << startIndex << endl;
      
     	cout << A[finalPosition] << endl;
