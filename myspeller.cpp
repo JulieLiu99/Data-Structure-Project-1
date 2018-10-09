@@ -14,10 +14,7 @@ class dSearch {
 		void binaryWordQSearch(string a[],int numWords,int qMarkPos, string query);
 
 };
-bool EndsWith(const string& a, const string& b) {
-    if (b.size() > a.size()) return false;
-    return std::equal(a.begin() + a.size() - b.size(), a.end(), b.begin());
-}
+
 void dSearch::binaryWordSearch(string A[], int n, string value) {
     int first = 0;
     int last = n-1;
