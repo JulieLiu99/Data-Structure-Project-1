@@ -51,7 +51,7 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
     int comparison = 0;
     while (!found && first <= last) {
         middle = (first + last)/2;
-        if (A[middle].find(newValue) != std::string::npos){ //toSearch.find('*') != std::string::npos
+        if (A[middle].find(newValue) == 0){ //toSearch.find('*') != std::string::npos
             found = true;
             position = middle;
         } else if (A[middle] > newValue) last = middle - 1;
@@ -60,11 +60,11 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
     }
     int currentWord=position;
     int startIndex=position+1;
-    while(A[startIndex-1].find(newValue) != std::string::npos) {
+    while(A[startIndex-1].find(newValue) == 0) {
     	startIndex=startIndex-1;
     }
-    int endIndex=position-1;
-        while(A[endIndex+1].find(newValue) != std::string::npos) {
+    int endIndex=position;
+        while(A[endIndex+1].find(newValue) == 0) {
     	endIndex=endIndex+1;
     }
 
@@ -75,7 +75,7 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
         cout << comparison << " word comparison carried out" << endl;
         cout << "end: " << endIndex << "... start: " << startIndex << endl;
         if((endIndex-startIndex)>0) {
-        for(int j=0;j<(endIndex-startIndex);j++) {
+        for(int j=0;j<(endIndex+1-startIndex);j++) {
         	cout << A[startIndex+j] << endl;
         }
     } else {
