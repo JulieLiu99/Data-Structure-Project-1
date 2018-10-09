@@ -136,6 +136,7 @@ void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value) {
  		if(curBackStringPart==backStringPart) {
  			foundFinal=true;
  			finalPosition=first2+j;
+ 			cout << A[first2+j] << endl;
  		}
  	}
  }
@@ -146,8 +147,9 @@ void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value) {
     	cout << "word found" << endl;
         cout << comparison << " word comparisons carried out" << endl;
         //cout << "end: " << endIndex << "... start: " << startIndex << endl;
-     
-    	cout << A[finalPosition] << endl;
+     	/*for(int j=0;j<(last2+1-first2);j++) {
+    	cout << A[first2+j] << endl;
+    }*/
     
     }
 }
