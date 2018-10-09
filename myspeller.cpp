@@ -49,7 +49,7 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
     int position;
     bool found = false;
     int comparison = 0;
-    while (!found && first < last) {
+    while (!found && first <= last) {
         middle = (first + last)/2;
         if (A[middle].find(newValue) != std::string::npos){ //toSearch.find('*') != std::string::npos
             found = true;
@@ -58,14 +58,29 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
         else first = middle + 1;
         comparison += 1;
     }
+    int currentWord=position;
+    int startIndex=position+1;
+    while(A[startIndex-1].find(newValue) != std::string::npos) {
+    	startIndex=startIndex-1;
+    }
+    int endIndex=position-1;
+        while(A[endIndex+1].find(newValue) != std::string::npos) {
+    	endIndex=endIndex+1;
+    }
+
     if(!found) {
     	cout<< "word not found" << endl;
     } else {
     	cout << "word found" << endl;
         cout << comparison << " word comparison carried out" << endl;
-        for(int j=0;j<(last-first);j++) {
-        	cout << A[first+j] << endl;
+        cout << "end: " << endIndex << "... start: " << startIndex << endl;
+        if((endIndex-startIndex)>0) {
+        for(int j=0;j<(endIndex-startIndex);j++) {
+        	cout << A[startIndex+j] << endl;
         }
+    } else {
+    	cout << A[position] << endl;
+    }
     }
 
 
@@ -131,4 +146,5 @@ int main(int count, char * args[])
     }
 
 	return EXIT_SUCCESS;
+	// ./a.out -d Dictionary141words.txt -l 141
 }
