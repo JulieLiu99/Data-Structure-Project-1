@@ -1,6 +1,7 @@
 # Data-Structure-Project-1
 
 This is a speller application termed myspeller, that can help a user lookup English words in a provided dictionary. This program is created using the elementary data structures (mostly arrays) and the Linux/FreeBSD C++ environment.
+Once the program starts, it presents the user with a prompt. Every time, the user types in a query, the application generates and prints out the result(s) and finally, it gives the prompt again to indicate that it expects the next query. The program terminates once the user types at the prompt exit.
 
 ## Prerequisites
 
@@ -10,7 +11,8 @@ Sorted words in dictionary files, each word per line.
 ## Getting Started
 
 This instruction will get you a copy of the project up and running on your local machine for development and testing purposes. 
-./myspeller -d <dictionaryfilename> -l <numberOfWordsSearch>
+./myspeller -d dictionaryfilename -l numberOfWordsSearch
+The following is an example of running the program via command line.
 
 ```
 ./myspeller -d Dictionary141words.txt -l 2 //user input
