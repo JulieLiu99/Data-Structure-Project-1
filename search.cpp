@@ -8,30 +8,30 @@ using namespace std;
 
 void dSearch::binaryWordSearch(vector<string> A, int n, string value) {
 
-    int first = 0;
-    int last = n-1;
+    int first = 0; // The first element in the vector A
+    int last = n-1; // The last element in the vector A
     int middle;
-    bool found = false;
-    int comparison = 0;
+    bool found = false; //Boolean for whether a match for the word is found
+    int comparison = 0; //The number of word comparisons carried out
     
-    while (!found && first <= last) {
-        middle = (first + last)/2;
-        if (A[middle] == value){
+    while (!found && first <= last) { 
+        middle = (first + last)/2; //The index halfway between the first and last variables
+        if (A[middle] == value){ //If the middle value itself is the value we are searching for, set found to true
             found = true;
-        } else if (A[middle] > value){
+        } else if (A[middle] > value){ // If the middle value is higher than the search value alphabetically, make the last index the middle-1 index
             last = middle - 1;
             }
         else {
-            first = middle + 1;
+            first = middle + 1; // If the middle value is lower than the search value alphabetically, make the first index the middle + 1 index
         }
-        comparison += 1;
+        comparison += 1; // increase the comparison by 1 every time the loop is run to update the number of word comparisons
     }
     
-    if(found == true){
+    if(found == true){ //If found, print out a success notice and the number of comparisons carried out
         cout << "word found" << endl;
         cout << comparison << " word comparisons carried out" << endl;
         } 
-        else cout<< "word not found" << endl;
+        else cout<< "word not found" << endl; // If not found, a failure to find query notice.
         
 }
 
