@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<string>
 #include <fstream>
@@ -17,6 +16,7 @@ int main(int count, char * args[])
     int dicSize = 0;
     vector <string> A;
     string toSearch;
+    string st;
 
 	for(int i=1; i<count; i++)
 	{
@@ -41,13 +41,14 @@ int main(int count, char * args[])
 	while (getline(infile, str))
 	{
 		if(str.size() > 0)
-			A.push_back(str);
+		    st = str.substr(0, str.size()-1);
+			A.push_back(st);
 			dicSize += 1;
 	}
 	cout << "Dictionary size is " << dicSize << endl;
     infile.close();
-    // continuously take a user-provided input  
     
+    // continuously take a user-provided input  
     while (true){
     
         cout << "Which word are you looking for? Type 'exit' to stop : " << endl;
