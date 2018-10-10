@@ -1,11 +1,19 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 
-class Searching
-{
+#include<iostream>
+#include<string>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+
+class dSearch {
 	public:
-		void insert(int);
-		int remove();
+		void binaryWordSearch(vector<string> v,int numWords,string query);
+		void binaryWordStarSearch(vector<string> v,int numWords,string query, int wordcount);
+		void binaryWordQSearch(vector<string> v,int numWords,int qMarkPos, string query, int wordcount);
+
 };
 
 #endif
