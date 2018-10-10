@@ -10,8 +10,8 @@ using namespace std;
 class dSearch {
 	public:
 		void binaryWordSearch(string a[],int numWords,string query);
-		void binaryWordStarSearch(string a[],int numWords,string query);
-		void binaryWordQSearch(string a[],int numWords,int qMarkPos, string query);
+		void binaryWordStarSearch(string a[],int numWords,string query, int wordcount);
+		void binaryWordQSearch(string a[],int numWords,int qMarkPos, string query, int wordcount);
 
 };
 
@@ -40,11 +40,11 @@ void dSearch::binaryWordSearch(string A[], int n, string value) {
 
 }
 
-void dSearch::binaryWordStarSearch(string A[], int n, string value) {
+void dSearch::binaryWordStarSearch(string A[], int n, string value, int wordcount) {
 	int first = 0;
 	//int starPos=value.size()-1;
 	string newValue=value.substr(0,value.length()-1);
-	cout<< "Looking for " << newValue <<endl;
+	//cout<< "Looking for " << newValue <<endl;
     int last = n-1;
     int middle;
     int position;
@@ -79,7 +79,9 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
         //cout << "end: " << endIndex << "... start: " << startIndex << endl;
         if((endIndex-startIndex)>0) {
         for(int j=0;j<(endIndex+1-startIndex);j++) {
+        	if(j<wordcount) {
         	cout << A[startIndex+j] << endl;
+        }
         }
     } else {
     	cout << A[position] << endl;
@@ -87,7 +89,7 @@ void dSearch::binaryWordStarSearch(string A[], int n, string value) {
     }
 }
 
-void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value) {
+void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value, int wordcount) {
 	string frontStringPart = value.substr(0,qMarkPos);
 	string backStringPart = value.substr(qMarkPos+1,value.size()-1);
 	int first = 0;
@@ -124,16 +126,22 @@ void dSearch::binaryWordQSearch(string A[], int n, int qMarkPos, string value) {
  	bool foundFinal = false;
  	int finalPosition;
  	string curBackStringPart;
+ 	int wordCounter=0;
  	for(int j=0;j<(last2+1-first2);j++) {
  		comparison+=1;
  		if(A[first2+j].size()==value.size()) {
  		//cout << "CURRENT WORD IN LOOP---> " << A[first2+j] << endl;
  		curBackStringPart = A[first2+j].substr(qMarkPos+1,A[first2+j].size()-1);
  		//cout << "curBackStringPart: " << curBackStringPart << endl;
- 		if(curBackStringPart==backStringPart) {
+ 		if((curBackStringPart==backStringPart)) {
+ 			
  			foundFinal=true;
  			finalPosition=first2+j;
+ 			//cout << "wordCounter: " << wordCounter << " - wordcount: " << wordcount << endl;
+ 			if((wordCounter<wordcount)) {
  			cout << A[first2+j] << endl;
+ 		}
+ 		wordCounter+=1;
  		}
  	}
  }
@@ -180,7 +188,31 @@ int main(int count, char * args[])
 	cout<<"WordCount = "<<wordcount<<endl;
 
     ifstream infile;
-    int dicSize = wordcount; //atoi(wordcount)
+    ifstream infileCounter;
+    infileCounter.open(filename);
+    int lineCount=0;
+    string line;
+    while (getline(infileCounter, line)) {
+        lineCount++;
+    }
+    infileCounter.close();
+    cout << "LINES IN FILE: " << lineCount << endl;
+    int dicSize = lineCount;
+/*
+    int dicSize = 141; //atoi(wordcount)
+    if(filename=="Dictionary141words.txt") {
+    	dicSize=141;
+    } else if(filename=="Dictionary283words.txt") {
+    	dicSize=283;
+    }
+    else if(filename=="Dictionary2265words.txt") {
+    	dicSize=2265;
+    }
+    else if(filename=="Dictionary466544words.txt") {
+    	dicSize=466544;
+    } */
+
+    cout << "dicSize: " << dicSize <<endl;
     string A[dicSize];
     string toSearch;
     int position;
@@ -188,9 +220,12 @@ int main(int count, char * args[])
     
     // read from the dictionary file and store the entries into an array 
     infile.open(filename);
+    
+
     for (int i = 0; i < dicSize; i++){
         infile >> A[i];
-    };
+    }; 
+
     infile.close();
     
     // continuously take a user-provided input  
@@ -198,12 +233,11 @@ int main(int count, char * args[])
         cout << "Which word are you looking for? Type 'exit' to stop : " << endl;
         cin >> toSearch; 
         int qMarkPosition = toSearch.find("?");
-
         if (toSearch == "exit") break;
         if (toSearch.find('*') != std::string::npos) {
-        	search.binaryWordStarSearch(A, dicSize, toSearch);
-        } else if(toSearch.find('?') != std::string::npos) {
-        	search.binaryWordQSearch(A, dicSize,qMarkPosition, toSearch);
+        	search.binaryWordStarSearch(A, dicSize, toSearch, wordcount);
+        } else if(qMarkPosition != std::string::npos) {
+        	search.binaryWordQSearch(A, dicSize,qMarkPosition, toSearch, wordcount);
         }
         else{
         search.binaryWordSearch(A, dicSize, toSearch);
