@@ -129,7 +129,7 @@ void dSearch::binaryWordQSearch(vector<string> A, int n, int qMarkPos, string va
  			if((wordCounter<wordcount)) { //Limit words printed out to user specified number, wordcount
  			cout << A[first2+j] << endl; //Print matched word
  		}
- 		wordCounter+=1; //MIGHT NEED TO GO IN THE if((curBackStringPart==backStringPart))
+ 		wordCounter+=1; 
  		}
  	}
  }
