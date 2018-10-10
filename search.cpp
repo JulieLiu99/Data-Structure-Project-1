@@ -12,7 +12,7 @@ void dSearch::binaryWordSearch(vector<string> A, int n, string value) {
     int last = n-1; // The last element in the vector A
     int middle;
     bool found = false; //Boolean for whether a match for the word is found
-    int comparison = 0; //The number of word comparisons carried out
+    int comparison = 0; //The number of word comparisons carried out for the current search
     
     while (!found && first <= last) { 
         middle = (first + last)/2; //The index halfway between the first and last variables
@@ -36,35 +36,32 @@ void dSearch::binaryWordSearch(vector<string> A, int n, string value) {
 }
 
 void dSearch::binaryWordStarSearch(vector<string> A, int n, string value, int wordcount) {
-	int first = 0;
-	//int starPos=value.size()-1;
-	string newValue=value.substr(0,value.length()-1);
-	//cout<< "Looking for " << newValue <<endl;
-    int last = n-1;
+	int first = 0; // The first element in the vector A
+	string newValue=value.substr(0,value.length()-1); //The search query value without the * mark which is the last character
+    int last = n-1; // The last element in the vector A
     int middle;
-    int position;
-    bool found = false;
-    int comparison = 0;
+    int position; //The position where the value is found in the vector A
+    bool found = false; //Boolean for whether a match for the word is found
+    int comparison = 0; //The number of word comparisons carried out for the current search
     
     while (!found && first <= last) {
-        middle = (first + last)/2;
-        if (A[middle].find(newValue) == 0){ //toSearch.find('*') != std::string::npos
+        middle = (first + last)/2; //The index halfway between the first and last variables
+        if (A[middle].find(newValue) == 0){ //If the middle value STARTS with the newValue substring
             found = true;
-            position = middle;
-        } else if (A[middle] > newValue) last = middle - 1;
-        else first = middle + 1;
-        comparison += 1;
+            position = middle; //Set the position to be the index of the middle
+        } else if (A[middle] > newValue) last = middle - 1; // If the middle value is higher than the search value alphabetically, make the last index the middle-1 index
+        else first = middle + 1; // If the middle value is lower than the search value alphabetically, make the first index the middle + 1 index
+        comparison += 1; // Increase the comparison by 1 every time the loop is run to update the number of word comparisons
     }
-    int currentWord=position;
-    int startIndex=position+1;
-    while(A[startIndex-1].find(newValue) == 0) {
-    	startIndex=startIndex-1;
-    	comparison += 1;
+    int startIndex=position+1; //Index to start the search for matching values to the left of the current position index
+    while(A[startIndex-1].find(newValue) == 0) { //While the previous value to the current startIndex STARTS with newValue substring
+    	startIndex=startIndex-1; //Reduce the startIndex by one 
+    	comparison += 1; // Increase the comparison by 1 every time the loop is run to update the number of word comparisons
     }
-    int endIndex=position;
-        while(A[endIndex+1].find(newValue) == 0) {
-    	endIndex=endIndex+1;
-    	comparison += 1;
+    int endIndex=position; //Index to start the search for matching values to the right of the current position index
+        while(A[endIndex+1].find(newValue) == 0) { //While the next value to the current endIndex STARTS with newValue substring
+    	endIndex=endIndex+1; //Increase the endIndex by one 
+    	comparison += 1; // Increase the comparison by 1 every time the loop is run to update the number of word comparisons
     }
 
     if(!found) {
@@ -73,13 +70,13 @@ void dSearch::binaryWordStarSearch(vector<string> A, int n, string value, int wo
     	cout << "word found" << endl;
         cout << comparison << " word comparisons carried out" << endl;
         //cout << "end: " << endIndex << "... start: " << startIndex << endl;
-        if((endIndex-startIndex)>0) {
-        for(int j=0;j<(endIndex+1-startIndex);j++) {
-        	if(j<wordcount) {
-        	cout << A[startIndex+j] << endl;
+        if((endIndex-startIndex)>0) { //If there is more than one matched word in the search ( endIndex!=startIndex would work too )
+        for(int j=0;j<(endIndex+1-startIndex);j++) { //Run loop from startIndex to endIndex
+        	if(j<wordcount) { //As long as j is less than the wordcount specified by the user
+        	cout << A[startIndex+j] << endl; //Print the word
         }
         }
-    } else {
+    } else { //If only one word is matched simply print it out
     	cout << A[position] << endl;
     }
     }
