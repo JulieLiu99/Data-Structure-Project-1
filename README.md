@@ -42,24 +42,12 @@ exit  //user input
 In the Main.() function, reading from the dictionary file and storing the data into an array has O(n) running time.
 In the Seaching class, binary search has O(n logn) running time. binaryWordStarSearch and binaryWordQSearch functions have additional search of linear complexity on part of the dictionary array, which does not affect the overall complexity.
 
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
 * **Julie Liu** 
 * **Romeno Wenogk Fernando** 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-
 ## Acknowledgments
 
-* Under guidance of Professor Stavros Kolliopoulos and instructor Khalid Mengal in New York University Abu Dhabi Computer Science Department
+* The project is finished under the guidance of Professor Stavros Kolliopoulos and instructor Khalid Mengal in New York University Abu Dhabi Computer Science Department
 
