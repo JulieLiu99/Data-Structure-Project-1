@@ -59,7 +59,7 @@ void dSearch::binaryWordStarSearch(vector<string> A, int n, string value, int wo
     	comparison += 1; // Increase the comparison by 1 every time the loop is run to update the number of word comparisons
     }
     int endIndex=position; //Index to start the search for matching values to the right of the current position index
-        while(A[endIndex+1].find(newValue) == 0) { //While the next value to the current endIndex STARTS with newValue substring
+    while(A[endIndex+1].find(newValue) == 0) { //While the next value to the current endIndex STARTS with newValue substring
     	endIndex=endIndex+1; //Increase the endIndex by one 
     	comparison += 1; // Increase the comparison by 1 every time the loop is run to update the number of word comparisons
     }
